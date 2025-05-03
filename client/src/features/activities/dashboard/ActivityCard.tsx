@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Card,
   CardActions,
@@ -10,10 +11,12 @@ import {
 type Props = {
   activity: Activity;
   handleSelectActivity: (id: string) => void;
+  deleteActivity: (id: string) => void;
 };
 export default function ActivityCard({
   activity,
   handleSelectActivity,
+  deleteActivity,
 }: Props) {
   return (
     <Card sx={{ borderRadius: 3 }}>
@@ -46,14 +49,24 @@ export default function ActivityCard({
           sx={{ justifyContent: "space-between", display: "flex", pb: 2 }}
         >
           <Chip label={activity.category} />
-          <Button
-            onClick={() => handleSelectActivity(activity.id)}
-            size="medium"
-            variant="contained"
-            color="primary"
-          >
-            View
-          </Button>
+          <Box display="flex" gap={3}>
+            <Button
+              onClick={() => handleSelectActivity(activity.id)}
+              size="medium"
+              variant="contained"
+              color="primary"
+            >
+              View
+            </Button>
+            <Button
+              onClick={() => deleteActivity(activity.id)}
+              size="medium"
+              variant="contained"
+              color="error"
+            >
+              Delete
+            </Button>
+          </Box>
         </CardActions>
       </CardContent>
     </Card>
