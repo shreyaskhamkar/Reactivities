@@ -6,18 +6,23 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import { useActivities } from "../../../lib/hooks/usActivities";
 
 type Props = {
-  activity: Activity;
+  selectedActivity: Activity;
   handleCancelSelectActivity: () => void;
   openForm: (id?: string) => void;
 };
 
 export default function activityDetail({
-  activity,
+  selectedActivity,
   handleCancelSelectActivity,
   openForm,
 }: Props) {
+  const { activities } = useActivities();
+  const activity = activities?.find((a) => a.id === selectedActivity.id);
+
+  if (!activity) return <Typography>Loading...</Typography>;
   return (
     <Card sx={{ borderRadius: 3 }}>
       <CardMedia
