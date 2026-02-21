@@ -1,6 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import ActivityList from "./activityList";
 import { useActivities } from "../../../lib/hooks/usActivities";
+import ActivityFilters from "./ActivityFilters";
 
 export default function activityDashboard() {
   const { activities, isPending } = useActivities();
@@ -12,7 +13,9 @@ export default function activityDashboard() {
       <Grid size={7}>
         <ActivityList />
       </Grid>
-      <Grid size={5}>Activity Filters</Grid>
+      <Grid size={4}>
+        <ActivityFilters />
+      </Grid>
     </Grid>
   );
 }
